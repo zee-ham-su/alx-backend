@@ -55,7 +55,8 @@ class Server:
         end_index = start_index + page_size
 
         next_index = end_index if end_index < total_items else None
-        data = [dataset.get(i, []) for i in range(start_index, min(end_index, total_items))]
+        data = [dataset.get(i, [])
+                for i in range(start_index, min(end_index, total_items))]
 
         return {
             "index": start_index,
