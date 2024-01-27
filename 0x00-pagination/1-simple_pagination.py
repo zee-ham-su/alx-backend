@@ -46,10 +46,9 @@ class Server:
         based on pagination parameters.
         """
         assert isinstance(
-            page, int) and page > 0, "Page should be a positive integer."
+            page, int) and page > 0
         assert isinstance(
-            page_size, int) and page_size > 0, "Page size should be a positive integer."
-
+            page_size, int) and page_size > 0
         start_index, end_index = index_range(page, page_size)
         dataset = self.dataset()
 
