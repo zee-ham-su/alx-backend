@@ -63,10 +63,13 @@ In this directory, you will find examples and explanations of caching techniques
 """
 
 class BaseCaching():
+    
+    
     """ BaseCaching defines:
       - constants of your caching system
       - where your data are stored (in a dictionary)
     """
+    
     MAX_ITEMS = 4
 
     def __init__(self):
