@@ -6,11 +6,15 @@ from base_caching import BaseCaching
 
 
 class LIFOCache(BaseCaching):
+    """ a caching class that inherits from BaseCaching
+    """
     def __init__(self):
         super().__init__()
         self.insertion_order = []
 
     def put(self, key, item):
+        """ assign to the dictionary self.cache_data the item
+        value for the key"""
         if key and item:
             if key in self.cache_data:
                 self.cache_data[key] = item
@@ -23,6 +27,7 @@ class LIFOCache(BaseCaching):
                 self.cache_data[key] = item
 
     def get(self, key):
+        """ return the value that is linked to the key"""
         if key and key in self.cache_data:
             return self.cache_data[key]
         return None
