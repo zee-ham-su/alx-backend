@@ -1,10 +1,12 @@
+#!/usr/bin/env python3
+"""Basic Flask-babel app"""
+
 import pytz
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
-from datetime import timezone as tmzn
 from pytz import timezone
 import pytz.exceptions
-from typing import Union,Dict
+from datetime import datetime
 
 
 class Config(object):
@@ -27,8 +29,7 @@ users = {
 
 
 def get_user():
-    """ function that returns a user dictionary or
-    None if the ID cannot be found or if login_as was not passed."""
+    """Function that returns a user dictionary or None if the ID cannot be found or if login_as was not passed."""
     id_login = request.args.get('login_as')
     if id_login:
         return users.get(int(id_login))
@@ -38,15 +39,14 @@ def get_user():
 
 @app.before_request
 def before_request():
-    """ use get_user to find a user if any,
-    and set it as a global on flask.g.user"""
+    """Use get_user to find a user if any, and set it as a global on flask.g.user"""
     user = get_user()
     g.user = user
 
 
 @babel.localeselector
 def get_locale() -> str:
-    """the best match with our supported languages."""
+    """The best match with our supported languages."""
     lang = request.args.get('locale')
     if lang in app.config['LANGUAGES']:
         return lang
@@ -69,23 +69,34 @@ def get_timezone():
     time_zone = request.args.get('timezone', None)
     if time_zone:
         try:
-            return timezone(time_zone).zone
+            return timezone(time_zone)
         except pytz.exceptions.UnknownTimeZoneError:
             pass
     if g.user:
         try:
             time_zone = g.user.get('timezone')
-            return timezone(time_zone).zone
+            return timezone(time_zone)
         except pytz.exceptions.UnknownTimeZoneError:
             pass
     default_time = app.config['BABEL_DEFAULT_TIMEZONE']
     return default_time
 
 
+def get_current_time() -> str:
+    """Get the current time in the user's timezone."""
+    user_timezone = get_timezone()
+    if user_timezone:
+        current_time = datetime.now(user_timezone)
+        return current_time.strftime('%b %d, %Y %I:%M:%S %p')
+    else:
+        return "Timezone not available"
+
+
 @app.route('/')
 def index() -> str:
     """Main route"""
-    return render_template('5-index.html')
+    current_time = get_current_time()
+    return render_template('index.html', current_time=current_time)
 
 
 if __name__ == "__main__":
