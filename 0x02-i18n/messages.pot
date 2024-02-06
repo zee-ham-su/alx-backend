@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-02-06 14:15+0000\n"
+"POT-Creation-Date: 2024-02-06 18:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -277,11 +277,11 @@ msgid_plural "{len_type} values are required, but {len_value} were given."
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/3-index.html:7
+#: templates/3-index.html:7 templates/4-index.html:7
 msgid "home_title"
 msgstr ""
 
-#: templates/3-index.html:11
-msgid "Home_header"
+#: templates/3-index.html:11 templates/4-index.html:11
+msgid "home_header"
 msgstr ""
 

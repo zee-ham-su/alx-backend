@@ -1,6 +1,13 @@
 {
     "cSpell.words": [
+        "Bienvenue",
+        "fenv",
         "Holberton",
-        "localeselector"
+        "localeselector",
+        "msgid",
+        "msgstr",
+        "nargs",
+        "nplurals",
+        "termui"
     ]
 }
